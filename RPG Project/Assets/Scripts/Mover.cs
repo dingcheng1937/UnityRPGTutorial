@@ -9,7 +9,8 @@ public class Mover : MonoBehaviour
     // [SerializeField] Transform target;
     private NavMeshAgent navMeshAgent;
     public Camera mainCamera;
-    public float moveSpeed = 5f;
+    // public Animator animator;
+    public float maxMoveSpeed = 20f;
 
     void Start()
     {
@@ -19,10 +20,13 @@ public class Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+        if (Input.GetMouseButton(0))
         {
             MoveToCursor();
+            
         }
+        UpdateAnimator();
         // if (target != null && navMeshAgent != null)
         // {
         //     navMeshAgent.SetDestination(target.position);
@@ -37,12 +41,25 @@ public class Mover : MonoBehaviour
 
     private void MoveToCursor()
     {
+       
+
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         bool hasHit = Physics.Raycast(ray, out hit);
         if (hasHit)
         {
             navMeshAgent.SetDestination(hit.point);
+
         }
+    }
+
+    private void UpdateAnimator()
+    {
+         // float moveSpeed = Mathf.Abs(navMeshAgent.velocity.z);
+        Vector3 velocity = navMeshAgent.velocity;
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+        float speed = localVelocity.z;
+        Debug.Log("speed: " + speed);
+        GetComponent<Animator>().SetFloat("MoveSpeed", Mathf.Abs(speed));
     }
 }
