@@ -10,7 +10,7 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 20f;
         private bool isAbleToAttack = true;
         Transform target;
-        CombatTarget curCombatTarget;
+        GameObject curCombatTarget;
         float timeSinceLastAttack = 0;
         private void Update()
         {       
@@ -59,7 +59,7 @@ namespace RPG.Combat
             GetComponent<Animator>().SetTrigger("AttackTrigger");
         }
 
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             print("Take that!! "+combatTarget);
             GetComponent<ActionScheduler>().StartAction(this);
@@ -78,6 +78,13 @@ namespace RPG.Combat
         {
             GetComponent<Animator>().ResetTrigger("AttackTrigger");
             GetComponent<Animator>().SetTrigger("CancelAttack");
+        }
+
+        public bool CanAttack(GameObject combatTarget)
+        {
+            if (combatTarget == null){return false;}
+            Health targetToTest = combatTarget.GetComponent<Health>();
+            return targetToTest != null && !targetToTest.IsDead();
         }
     }
 }

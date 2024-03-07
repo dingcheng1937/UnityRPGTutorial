@@ -5,19 +5,25 @@ using RPG.Movement;
 using UnityEngine.Rendering;
 using System;
 using RPG.Combat;
+using RPG.Core;
 
 namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
-        void Start()
+        // Fighter fighter;
+        // GameObject combatTarget;
+        Health health;
+        private void Start()
         {
-            
+            // fighter = GetComponent<Fighter>();
+            health = GetComponent<Health>();
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
+            if (health.IsDead()) return;
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
             // print("do nothing.");
@@ -29,14 +35,14 @@ namespace RPG.Control
             
             foreach (RaycastHit hit in hits)
             {
-                CombatTarget combatTarget = hit.collider.GetComponent<CombatTarget>();  
-                
+                CombatTarget combatTarget = hit.transform.GetComponent<CombatTarget>();  
+                // print("combatTarget: " + combatTarget);
                 if (combatTarget == null) continue;
-                if (!combatTarget.CanAttack()) continue;
+                if (!GetComponent<Fighter>().CanAttack(combatTarget.gameObject)) continue;
                 if (Input.GetMouseButtonDown(0))
                 {
                     print("combat now!");
-                    GetComponent<Fighter>().Attack(combatTarget);                  
+                    GetComponent<Fighter>().Attack(combatTarget.gameObject);                  
                 }        
                 return true;  
             }

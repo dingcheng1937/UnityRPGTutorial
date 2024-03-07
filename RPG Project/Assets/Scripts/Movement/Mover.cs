@@ -11,7 +11,7 @@ namespace RPG.Movement
     {
         // [SerializeField] Transform target;
         private NavMeshAgent navMeshAgent;
-        
+        Health health;
 
         // public Animator animator;
         public float maxMoveSpeed = 20f;
@@ -19,6 +19,7 @@ namespace RPG.Movement
         void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent> ();
+            health = GetComponent<Health>();
         }
 
         // Update is called once per frame
@@ -41,6 +42,7 @@ namespace RPG.Movement
             //     //     transform.Translate(direction.normalized * moveSpeed * Time.deltaTime);
             //     // }
             // }
+            navMeshAgent.enabled = !health.IsDead();
         }
 
         private void LateUpdate() {

@@ -1,18 +1,11 @@
 using UnityEngine;
+using RPG.Core;
+
 namespace RPG.Combat
 {
+    [RequireComponent(typeof(Health))]
     public class CombatTarget : MonoBehaviour 
     {
-        public bool CanAttack()
-        {
-            if (GetComponent<Health>().IsDead())
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+
     }
 }
