@@ -20,7 +20,7 @@ namespace RPG.Control
         {
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
-            print("do nothing.");
+            // print("do nothing.");
         }
 
         private bool InteractWithCombat()
@@ -30,14 +30,9 @@ namespace RPG.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget combatTarget = hit.collider.GetComponent<CombatTarget>();  
-                if (combatTarget == null) 
-                {
-                    continue;
-                }
-                // else
-                // {
-                //     print("combat ready.");
-                // }
+                
+                if (combatTarget == null) continue;
+                if (!combatTarget.CanAttack()) continue;
                 if (Input.GetMouseButtonDown(0))
                 {
                     print("combat now!");
@@ -52,13 +47,13 @@ namespace RPG.Control
         {
             RaycastHit hit;
             bool hasHit = Physics.Raycast(GetMouseRay(), out hit);          
-            print("move.");
             if (hasHit)
             {
                 if (Input.GetMouseButton(0))
                 {
                     GetComponent<Mover>().StartMoveAction(hit.point);
-                    // GetComponent<Fighter>().Cancel();    
+                    // GetComponent<Fighter>().Cancel();   
+                    
                 }
                 return true;
             }

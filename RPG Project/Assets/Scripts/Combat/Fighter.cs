@@ -7,6 +7,7 @@ namespace RPG.Combat
     {
         [SerializeField] float attackRange = 2f;   
         [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] float weaponDamage = 20f;
         private bool isAbleToAttack = true;
         Transform target;
         CombatTarget curCombatTarget;
@@ -14,38 +15,48 @@ namespace RPG.Combat
         private void Update()
         {       
 
-            if (target != null)
+            if (target != null )
             {
-                bool isInRange = Vector3.Distance(transform.position, target.position) < attackRange;
-                if (!isInRange)
+                if (!curCombatTarget.GetComponent<Health>().IsDead())
                 {
-                    GetComponent<Mover>().MoveTo(target.position);
-                }
-                else
-                {
-                    GetComponent<Mover>().Cancel();
+                    bool isInRange = Vector3.Distance(transform.position, target.position) < attackRange;
+                    if (!isInRange)
+                    {
+                        GetComponent<Mover>().MoveTo(target.position);
+                    }
+                    else
+                    {
+                        GetComponent<Mover>().Cancel();
+                        
+                        AttackBehaviour();
 
-                    AttackBehaviour();
-
-                    
+                        
+                    }
                 }
             }
         }
 
         private void AttackBehaviour()
         {
+            transform.LookAt(target);
             if (Time.time - timeSinceLastAttack >= timeBetweenAttacks)
             {
                 isAbleToAttack = true;
             }
             if (isAbleToAttack)
             {
-                GetComponent<Animator>().SetTrigger("AttackTrigger");
+                TriggerAttack();
                 isAbleToAttack = false;
                 timeSinceLastAttack = Time.time;
-                curCombatTarget.GetComponent<Health>().TakeDamage(30);
+                curCombatTarget.GetComponent<Health>().TakeDamage(weaponDamage);
             }
-            
+
+        }
+
+        private void TriggerAttack()
+        {
+            GetComponent<Animator>().ResetTrigger("CancelAttack");
+            GetComponent<Animator>().SetTrigger("AttackTrigger");
         }
 
         public void Attack(CombatTarget combatTarget)
@@ -59,7 +70,14 @@ namespace RPG.Combat
 
         public void Cancel()
         {
+            StopAttack();
             target = null;
+        }
+
+        private void StopAttack()
+        {
+            GetComponent<Animator>().ResetTrigger("AttackTrigger");
+            GetComponent<Animator>().SetTrigger("CancelAttack");
         }
     }
 }
