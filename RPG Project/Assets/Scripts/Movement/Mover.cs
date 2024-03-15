@@ -4,10 +4,11 @@ using JetBrains.Annotations;
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Saving;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour, IAction
+    public class Mover : MonoBehaviour, IAction, ISaveable
     {
         // [SerializeField] Transform target;
         private NavMeshAgent navMeshAgent;
@@ -73,6 +74,16 @@ namespace RPG.Movement
             float speed = localVelocity.z;
             // Debug.Log("speed: " + speed);
             GetComponent<Animator>().SetFloat("MoveSpeed", Mathf.Abs(speed));
+        }
+
+        public object CaptureState()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void RestoreState(object state)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
