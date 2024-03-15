@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HELLOWORLD.unity
     guid: c0f7d3a90b1d2a84eb656de15d48f0b0
+  - enabled: 1
+    path: Assets/Scenes/sandbox02.unity
+    guid: e032b0af935b14541b46b9691aa4e8d6
   m_configObjects: {}
