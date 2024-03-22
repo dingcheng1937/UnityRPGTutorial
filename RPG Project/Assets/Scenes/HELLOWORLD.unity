@@ -789,6 +789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3674953562404951833, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
+      propertyPath: uniqueIdentifier
+      value: a982ba07-1d66-4e57-a065-04ebe3f7800d
+      objectReference: {fileID: 0}
     - target: {fileID: 6665635836988304787, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -954,6 +958,10 @@ PrefabInstance:
     - target: {fileID: 3313260781736266833, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
       propertyPath: m_Name
       value: ToughEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674953562404951833, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 88ae9245-a781-4a4d-9f92-95ba1dcd64d8
       objectReference: {fileID: 0}
     - target: {fileID: 6665635836988304787, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
       propertyPath: m_RootOrder
@@ -1802,6 +1810,14 @@ PrefabInstance:
     - target: {fileID: 2275661870190478186, guid: e33469350db0c554e908dae9631fc66e, type: 3}
       propertyPath: m_TagString
       value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903997141709683033, guid: e33469350db0c554e908dae9631fc66e, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 95eb7bc1-b7f8-4d65-b8a3-2e7409c0758d
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426945750172923417, guid: e33469350db0c554e908dae9631fc66e, type: 3}
+      propertyPath: uniqueIdentifier
+      value: b6bed528-e1b8-4551-925d-b3a7fda09dfc
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e33469350db0c554e908dae9631fc66e, type: 3}
@@ -2961,6 +2977,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3674953562404951833, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 60ebc0af-b7f0-4f0b-96cf-2787d3f5d57f
+      objectReference: {fileID: 0}
     - target: {fileID: 6665635836988304787, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3529,6 +3549,10 @@ PrefabInstance:
     - target: {fileID: 3313260781736266833, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674953562404951833, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 6ee052e3-8555-4eb7-9d2b-a8d32ad34525
       objectReference: {fileID: 0}
     - target: {fileID: 6665635836988304787, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
       propertyPath: m_RootOrder
