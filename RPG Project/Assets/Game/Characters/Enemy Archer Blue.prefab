@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Archer Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 5265369700609746528, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
+      propertyPath: characterClass
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6665635836988304787, guid: 5191460ecb5181d4eafd0eaf10dee65e, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using RPG.Saving;
+using RPG.Stats;
 using UnityEngine;
 
 namespace RPG.Core
@@ -9,6 +10,10 @@ namespace RPG.Core
     {
         [SerializeField] float health = 100f;
         // [SerializeField] float maxHealth = 100f;
+        private void Start()
+        {
+            health = GetComponent<BaseStats>().GetHealth();
+        }
         public bool IsDead()
         {
             if (health <= 0)

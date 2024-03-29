@@ -163,7 +163,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.34
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -200,6 +200,7 @@ MonoBehaviour:
   rightHandTransform: {fileID: 750803692750801755}
   leftHandTransform: {fileID: 750803692750875481}
   defaultWeapon: {fileID: 11400000, guid: 5eefc8805c41f3541b95bc4ae533fe25, type: 2}
+  defaultWeaponName: Unarmed
 --- !u!114 &375012169454953471
 MonoBehaviour:
   m_ObjectHideFlags: 0
