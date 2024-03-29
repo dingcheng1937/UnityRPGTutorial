@@ -11,7 +11,7 @@ namespace RPG.Control
     public class AIController : MonoBehaviour
     {
         [SerializeField] float chaseDistance = 5f;
-        [SerializeField] float giveupDistance = 10f;
+        // [SerializeField] float giveupDistance = 10f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         int curWaypointIndex = 0;

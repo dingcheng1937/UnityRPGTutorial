@@ -8,7 +8,7 @@ namespace RPG.Core
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float health = 100f;
-        [SerializeField] float maxHealth = 100f;
+        // [SerializeField] float maxHealth = 100f;
         public bool IsDead()
         {
             if (health <= 0)
