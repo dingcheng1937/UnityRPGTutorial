@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using RPG.Saving;
+using RPG.Resources;
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
-using RPG.Saving;
+
 
 namespace RPG.Movement
 {
@@ -19,7 +21,7 @@ namespace RPG.Movement
 
         void Start()
         {
-            navMeshAgent = GetComponent<NavMeshAgent> ();
+            navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
         }
 

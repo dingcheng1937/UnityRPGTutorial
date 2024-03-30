@@ -1,8 +1,10 @@
 using System;
+using RPG.Resources;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
 using UnityEngine;
+
 namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction, ISaveable
@@ -13,10 +15,10 @@ namespace RPG.Combat
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
-        [SerializeField] string defaultWeaponName = "Unarmed";
+        // [SerializeField] string defaultWeaponName = "Unarmed";
         private bool isAbleToAttack = true;
         Transform target;
-        GameObject curCombatTarget;
+        public GameObject curCombatTarget;
         float timeSinceLastAttack = 0;
         Weapon currentWeapon = null;
         private void Start()
@@ -48,16 +50,17 @@ namespace RPG.Combat
                     }
                     else
                     {
-                        GetComponent<Mover>().Cancel();
-                        
-                        AttackBehaviour();
-
-                        
+                        GetComponent<Mover>().Cancel();                        
+                        AttackBehaviour();                        
                     }
                 }
             }
         }
 
+        public GameObject GetTarget()
+        {
+            return curCombatTarget;
+        }
         private void  AttackBehaviour()
         {
             transform.LookAt(target);
@@ -83,11 +86,11 @@ namespace RPG.Combat
             }
             if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, curCombatTarget.GetComponent<Health>());
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, curCombatTarget.GetComponent<Health>(), gameObject);
             }
             else
             {
-                curCombatTarget.GetComponent<Health>().TakeDamage(currentWeapon.GetDamage());
+                curCombatTarget.GetComponent<Health>().TakeDamage(gameObject, currentWeapon.GetDamage());
             }
         }
 
@@ -139,7 +142,7 @@ namespace RPG.Combat
         public void RestoreState(object state)
         {
             string weaponName = (string)state;
-            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
         }
     }

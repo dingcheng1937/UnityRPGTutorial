@@ -21,7 +21,7 @@ namespace RPG.SceneManagement
         [SerializeField] float fadeWaitTime = 0.5f;
         [SerializeField] float fadeInTime = 2f;
         private void OnTriggerEnter(Collider other) {
-            print("portal OnTriggerEnter");
+            // print("portal OnTriggerEnter");
             if (other.gameObject.tag == "Player")
             {
                 
