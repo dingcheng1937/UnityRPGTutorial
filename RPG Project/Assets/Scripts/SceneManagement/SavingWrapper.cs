@@ -15,11 +15,11 @@ namespace RPG.SceneManagement
         {
             StartCoroutine(LoadLastScene());
         }
-        private IEnumerator LoadLastScene() {
-            Fader fader = FindObjectOfType<Fader>();
-
-            fader.FadeOutImmediate();
+        private IEnumerator LoadLastScene() 
+        {
             yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
+            Fader fader = FindObjectOfType<Fader>();
+            fader.FadeOutImmediate();            
             yield return fader.FadeIn(fadeInTime);
         }
         // Update is called once per frame

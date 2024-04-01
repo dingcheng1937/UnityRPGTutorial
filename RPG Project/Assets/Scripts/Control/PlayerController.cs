@@ -6,6 +6,7 @@ using RPG.Resources;
 using RPG.Movement;
 using UnityEngine;
 using UnityEngine.Rendering;
+// using System;
 
 
 namespace RPG.Control
@@ -15,7 +16,23 @@ namespace RPG.Control
         // Fighter fighter;
         // GameObject combatTarget;
         Health health;
-        private void Start()
+        enum CursorType
+        {
+            None, 
+            Movement,
+            Combat,
+        }
+
+        [System.Serializable]
+        struct CursorMapping
+        {
+            public CursorType type;
+            public Texture2D texture;
+            public Vector2 hotspot;
+        }
+
+        [SerializeField] CursorMapping[] cursorMappings = null;
+        private void Awake()
         {
             // fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
@@ -27,7 +44,25 @@ namespace RPG.Control
             if (health.IsDead()) return;
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
-            // print("do nothing.");
+            SetCursor(CursorType.None);
+        }
+
+        private void SetCursor(CursorType type)
+        {
+            CursorMapping mapping = GetCursorMapping(type);
+            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+        }
+
+        private CursorMapping GetCursorMapping(CursorType type)
+        {
+            foreach (CursorMapping mapping in cursorMappings)
+            {
+                if (mapping.type == type)
+                {
+                    return mapping;
+                }
+            }
+            return cursorMappings[0];
         }
 
         private bool InteractWithCombat()
@@ -42,9 +77,10 @@ namespace RPG.Control
                 if (!GetComponent<Fighter>().CanAttack(combatTarget.gameObject)) continue;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    print("combat now!");
+                    // print("combat now!");
                     GetComponent<Fighter>().Attack(combatTarget.gameObject);                  
                 }        
+                SetCursor(CursorType.Combat);
                 return true;  
             }
             return false;
@@ -62,6 +98,7 @@ namespace RPG.Control
                     // GetComponent<Fighter>().Cancel();   
                     
                 }
+                SetCursor(CursorType.Movement);
                 return true;
             }
             return false;

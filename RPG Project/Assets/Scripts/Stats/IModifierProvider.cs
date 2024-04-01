@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Modifier : MonoBehaviour
+namespace RPG.Stats
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IModifierProvider
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IEnumerable<float> GetAdditiveModifiers(Stat stat);
+        IEnumerable<float> GetPercentageModifiers(Stat stat);
     }
 }

@@ -19,7 +19,7 @@ namespace RPG.Movement
         // public Animator animator;
         public float maxMoveSpeed = 20f;
 
-        void Start()
+        private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
@@ -27,24 +27,7 @@ namespace RPG.Movement
 
         // Update is called once per frame
         void Update()
-        {
-            
-            // if (Input.GetMouseButton(0))
-            // {
-            //     MoveToCursor();
-                
-            // }
-            
-            // if (target != null && navMeshAgent != null)
-            // {
-            //     navMeshAgent.SetDestination(target.position);
-            //     // Vector3 direction = target.position - transform.position;
-
-            //     // if (direction.magnitude > 0.1f)
-            //     // {
-            //     //     transform.Translate(direction.normalized * moveSpeed * Time.deltaTime);
-            //     // }
-            // }
+        {            
             navMeshAgent.enabled = !health.IsDead();
         }
 
@@ -86,9 +69,9 @@ namespace RPG.Movement
         public void RestoreState(object state)
         {
             SerializableVector3 position = (SerializableVector3)state;
-            GetComponent<NavMeshAgent>().enabled = false;
+            navMeshAgent.enabled = false;
             transform.position = position.ToVector();
-            GetComponent<NavMeshAgent>().enabled = true;
+            navMeshAgent.enabled = true;
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
     }
