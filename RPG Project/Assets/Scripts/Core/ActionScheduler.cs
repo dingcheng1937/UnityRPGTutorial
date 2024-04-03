@@ -13,7 +13,6 @@ namespace RPG.Core
             if (curAction == action) return;
             if (curAction != null)
             {
-                print("Cancelling" + curAction);
                 curAction.Cancel();
             }
             curAction = action;

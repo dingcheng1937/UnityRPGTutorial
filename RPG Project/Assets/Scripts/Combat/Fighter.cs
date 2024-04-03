@@ -125,7 +125,7 @@ namespace RPG.Combat
 
         public void Attack(GameObject combatTarget)
         {
-            print("Take that!! "+combatTarget);
+            // print("Take that!! "+combatTarget);
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.transform;
             curCombatTarget = combatTarget;
